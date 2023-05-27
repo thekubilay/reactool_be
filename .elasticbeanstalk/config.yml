@@ -1,4 +1,6 @@
 branch-defaults:
+  development:
+    environment: development
   main:
     environment: production
   production:
