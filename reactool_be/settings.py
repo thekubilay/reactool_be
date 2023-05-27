@@ -1,10 +1,19 @@
 import os
 
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-(@m-2=#i3e3=dlhsvh87gat*t489q0b&y&g7v7m%0yz-f^@-54'
-DEBUG = True
+
+SECRET_KEY = config('SECRET_KEY')
+
+if config('DEBUG'):
+	from .dev import *
+else:
+	from .prod import *
+
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
 	"*"
@@ -17,6 +26,11 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+
+	"corsheaders",
+	"users",
+	"companies",
+	"projects",
 ]
 
 MIDDLEWARE = [
@@ -27,6 +41,8 @@ MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'reactool_be.urls'
@@ -50,16 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'reactool_be.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': BASE_DIR / 'db.sqlite3',
-	}
-}
-
 AUTH_PASSWORD_VALIDATORS = [
 	{
 		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -75,6 +81,8 @@ AUTH_PASSWORD_VALIDATORS = [
 	},
 ]
 
+AUTH_USER_MODEL = "users.User"
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -82,7 +90,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
