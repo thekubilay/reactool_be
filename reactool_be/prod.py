@@ -1,13 +1,14 @@
+import os
+
 from decouple import config
 
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'production',
-		'USER': 'reactool',
-		'PASSWORD': 'WMAwQ6ZQJ',
-		'HOST': 'localhost',
-		'PORT': '3306',
+		'USER': os.environ['RDS_USERNAME'],
+		'PASSWORD': os.environ['RDS_PASSWORD'],
+		'HOST': os.environ['RDS_HOSTNAME'],
+		'PORT': os.environ['RDS_PORT'],
 	}
 }
 
