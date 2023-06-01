@@ -18,10 +18,12 @@ AWS_S3_REGION_NAME = 'ap-northeast-3'
 
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_FILE_OVERWRITE = True
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 
-STATICFILES_STORAGE = 'reactool_be.storages.CustomS3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'reactool_be.storages.CustomS3Boto3Storage'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/media/'
+
+STATICFILES_STORAGE = 'reactool_be.storages.StaticS3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'reactool_be.storages.MediaS3Boto3Storage'
 
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
