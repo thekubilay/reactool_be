@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-
 from django.contrib.auth.hashers import make_password
+from common.utils import generate_unique_id
 
 
 class UserManager(BaseUserManager):
@@ -20,6 +20,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+	id = models.BigIntegerField(primary_key=True, blank=True)
 	username = models.CharField(max_length=50, unique=True)
 	email = models.EmailField(max_length=100, unique=True)
 	first_name = models.CharField(max_length=50, blank=True)
@@ -44,3 +45,9 @@ class User(AbstractUser):
 
 	def has_module_perms(self, app_label):
 		return True
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.id = generate_unique_id(self, 111)
+
+		super().save(*args, **kwargs)

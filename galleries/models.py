@@ -1,20 +1,22 @@
 from django.db import models
-from users.models import User
 from common.utils import generate_unique_id
+from projects.models import Project
 
 
-class Company(models.Model):
+def upload_to(instance, filename):
+	return f"galleries/{instance.project.id}/{filename}"
+
+
+class Gallery(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
+	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="galleries")
+	url = models.FileField(upload_to=upload_to)
 	name = models.CharField(max_length=100)
-	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="companies")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
-	def __str__(self):
-		return self.name
-
 	def save(self, *args, **kwargs):
 		if not self.id:
-			self.id = generate_unique_id(self, 210)
+			self.id = generate_unique_id(self, 410)
 
 		super().save(*args, **kwargs)
