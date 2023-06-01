@@ -4,7 +4,7 @@ branch-defaults:
   main:
     environment: production
   production:
-    environment: production
+    environment: development
     group_suffix: null
 global:
   application_name: reactool

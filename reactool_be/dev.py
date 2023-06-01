@@ -6,7 +6,7 @@ DATABASES = {
 		'NAME': 'development',
 		'USER': 'kubilay',
 		'PASSWORD': 'WMAwQ6ZQJ',
-		'HOST': 'development.ci9vwq5bpyw0.ap-northeast-1.rds.amazonaws.com',
+		'HOST': 'development.czcvrhueuznd.ap-northeast-3.rds.amazonaws.com',
 		'PORT': '5432',
 	}
 }
