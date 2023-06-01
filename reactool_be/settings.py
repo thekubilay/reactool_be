@@ -12,11 +12,15 @@ if config('DEBUG'):
 else:
 	from .prod import *
 
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
 	"*"
+]
+
+CORS_ORIGIN_WHITELIST = [
+	"http://localhost:3000",
+	"https://test.nulunus.com",
 ]
 
 INSTALLED_APPS = [
@@ -26,6 +30,8 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+
+	"storages",
 
 	"corsheaders",
 	"users",
@@ -82,6 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "users.User"
+
+ADMIN_MEDIA_PREFIX = "/admin/"
 
 LANGUAGE_CODE = 'en-us'
 
