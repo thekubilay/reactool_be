@@ -12,7 +12,7 @@ class Gallery(models.Model):
 	order_num = models.IntegerField(null=True, default=1)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="galleries")
 	url = models.FileField(upload_to=upload_to)
-	name = models.CharField(max_length=255)
+	name = models.CharField(max_length=255, blank=True)
 	size = models.IntegerField(null=True, default=0)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
@@ -20,6 +20,9 @@ class Gallery(models.Model):
 	class Meta:
 		verbose_name_plural = "Galleries"
 		ordering = ["order_num"]
+
+	def __str__(self):
+		return self.project.name + "'s - " + self.name
 
 	def save(self, *args, **kwargs):
 		if not self.id:

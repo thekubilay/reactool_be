@@ -10,6 +10,9 @@ class ProjectGroup(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
+	def __str__(self):
+		return self.name
+
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.id = generate_unique_id(self, 310)
@@ -24,6 +27,9 @@ class Project(models.Model):
 	name = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.name
 
 	def save(self, *args, **kwargs):
 		if not self.id:
