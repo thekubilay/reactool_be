@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 
 	"storages",
+	"rest_framework",
 
 	"corsheaders",
 	"users",
@@ -39,6 +40,12 @@ INSTALLED_APPS = [
 	"projects",
 	"galleries",
 ]
+
+REST_FRAMEWORK = {
+	'DEFAULT_PERMISSION_CLASSES': [
+		'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+	]
+}
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',

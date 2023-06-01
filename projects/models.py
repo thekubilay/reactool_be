@@ -20,7 +20,7 @@ class ProjectGroup(models.Model):
 class Project(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="projects")
-	groups = models.ManyToManyField(ProjectGroup, related_name="projects")
+	groups = models.ManyToManyField(ProjectGroup, blank=True, related_name="projects")
 	name = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
