@@ -1,8 +1,11 @@
-from projects.models import Project, ProjectGroup
 from rest_framework import serializers
+from projects.models import Project, ProjectGroup
+from routes.serializers import RouteSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+	routes = RouteSerializer(many=True, read_only=True)
+
 	class Meta:
 		model = Project
 		fields = "__all__"
