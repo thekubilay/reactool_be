@@ -4,8 +4,6 @@ from galleries.models import Gallery
 from galleries.serializers import GallerySerializer
 
 
-# filter gallery list by project id
-
 class GalleryListAPIView(ListAPIView):
 	queryset = Gallery.objects.all()
 	serializer_class = GallerySerializer
@@ -14,5 +12,3 @@ class GalleryListAPIView(ListAPIView):
 	def get_queryset(self):
 		project_id = self.kwargs['project_id']
 		return Gallery.objects.filter(project_id=project_id)
-
-
