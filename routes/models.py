@@ -11,6 +11,9 @@ class Route(models.Model):
 	component_name = models.CharField(max_length=255, blank=True)
 	url_name = models.CharField(max_length=255, blank=True)
 
+	def endpoint(self):
+		return f"{self.project.id}/{self.url_name}/"
+
 	class Meta:
 		ordering = ["order_num"]
 
