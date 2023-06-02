@@ -3,6 +3,10 @@ from common.utils import generate_unique_id
 from companies.models import Company
 
 
+def upload_to(instance, filename):
+	return f"projects/{instance.id}/{filename}"
+
+
 class ProjectGroup(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	name = models.CharField(max_length=100)
@@ -24,6 +28,7 @@ class Project(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="projects")
 	groups = models.ManyToManyField(ProjectGroup, blank=True, related_name="projects")
+	logo = models.FileField(upload_to=upload_to, null=True, blank=True)
 	name = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)

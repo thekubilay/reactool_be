@@ -11,7 +11,7 @@ class Gallery(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	order_num = models.IntegerField(null=True, default=1)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="galleries")
-	url = models.FileField(upload_to=upload_to)
+	file = models.FileField(upload_to=upload_to)
 	name = models.CharField(max_length=255, blank=True)
 	size = models.IntegerField(null=True, default=0)
 	created_at = models.DateTimeField(auto_now_add=True)
@@ -28,7 +28,7 @@ class Gallery(models.Model):
 		if not self.id:
 			self.id = generate_unique_id(self, 410)
 
-		self.size = self.url.size
-		self.name = self.url.name
+		self.size = self.file.size
+		self.name = self.file.name
 
 		super().save(*args, **kwargs)
