@@ -6,8 +6,8 @@ admin.site.register(ProjectGroup)
 
 class ProjectAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'company', 'name')
-	list_display_links = ('id', 'name')
+	list_display = ('id', 'company', 'name', 'logo')
+	list_display_links = ('id', 'name', 'logo')
 	list_filter = ('company', 'groups')  # Add project_group to list_filter
 	search_fields = ('name', 'company__name', 'id')
 	list_per_page = 25
