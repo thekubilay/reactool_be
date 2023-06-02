@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	"companies",
 	"projects",
 	"galleries",
+	"plans",
 ]
 
 REST_FRAMEWORK = {

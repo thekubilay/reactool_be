@@ -6,4 +6,4 @@ def create_superuser(email, password):
 	return User.objects.create_superuser(email, password)
 
 
-create_superuser("kubilay.turgut@gmail.com", "324131")
+create_superuser("morisaki@nulunus.com", "324131")

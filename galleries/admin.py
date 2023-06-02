@@ -4,8 +4,8 @@ from galleries.models import Gallery
 
 class GalleryAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'project', 'name')
-	list_display_links = ('id', 'name')
+	list_display = ('id', 'project', 'name', 'url')
+	list_display_links = ('id', 'name', 'project', 'url')
 	list_filter = ('project',)  # Add project_group to list_filter
 	search_fields = ('name', 'project__name', 'id')
 	list_per_page = 25
