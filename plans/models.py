@@ -39,7 +39,7 @@ class Plan(models.Model):
 		if not self.id:
 			self.id = generate_unique_id(self, 510)
 
-		self.size = self.url.size
-		self.name = self.url.name
+		self.size = self.image.size
+		self.name = self.image.name
 
 		super().save(*args, **kwargs)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 	"routes",
 	"galleries",
 	"plans",
+	"maps",
 ]
 
 REST_FRAMEWORK = {
