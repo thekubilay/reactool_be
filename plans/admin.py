@@ -4,10 +4,10 @@ from plans.models import Plan
 
 class PlanAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'name', 'plan_type', 'image')
+	list_display = ('id', 'plan', 'type', 'menu', 'madori', 'alcove', 'terrace', 'image')
 	list_display_links = ('id', 'image')
 	list_filter = ('project',)  # Add project_group to list_filter
-	search_fields = ('name', 'plan_type', 'project__name', 'id')
+	search_fields = ('project__name', 'id', 'plan', 'type', 'menu', 'madori')
 	list_per_page = 25
 
 	def formfield_for_foreignkey(self, db_field, request, **kwargs):
