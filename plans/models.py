@@ -16,10 +16,10 @@ class Plan(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="plans", null=True)
 	order_num = models.IntegerField(null=True, default=1)
-	kind = models.CharField(max_length=255, blank=True, choices=KIND, default="general_plan")
+	plan_type = models.CharField(max_length=255, blank=True, choices=KIND, default="general_plan")
 	name = models.CharField(max_length=255, blank=True, help_text="A, B or 敷地配置図")
 	image = models.FileField(upload_to=upload_to)
-	room_type = models.CharField(max_length=255, blank=True, null=True, help_text="4LDK+WIC+SIC")
+	room_type = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
