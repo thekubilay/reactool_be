@@ -22,7 +22,7 @@ class Plan(models.Model):
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B")
 	menu = models.CharField(max_length=255, blank=True, null=True, help_text="基本...")
 	madori = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
-	measurement = models.CharField(max_length=255, blank=True, null=True, help_text="6.0m×6.0m")
+	measurement = models.CharField(max_length=255, blank=True, null=True, help_text="62.10m²")
 	alcove = models.CharField(max_length=255, blank=True, null=True, help_text="2.50m²")
 	terrace = models.CharField(max_length=255, blank=True, null=True, help_text="2.50m²")
 	balcony = models.CharField(max_length=255, blank=True, null=True, help_text="2.50m²")

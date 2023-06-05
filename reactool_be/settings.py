@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-if config('DEBUG'):
+if config('DEBUG', cast=bool):
 	from .dev import *
 else:
 	from .prod import *
