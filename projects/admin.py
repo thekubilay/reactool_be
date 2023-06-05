@@ -1,9 +1,10 @@
 from django.contrib import admin
-from projects.models import Company, Project, ProjectGroup
+from projects.models import Project, ProjectToken, ProjectGroup
 
 admin.site.register(ProjectGroup)
 
 
+@admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
 	list_display = ('id', 'company', 'name', 'logo')
@@ -18,4 +19,16 @@ class ProjectAdmin(admin.ModelAdmin):
 		return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-admin.site.register(Project, ProjectAdmin)
+@admin.register(ProjectToken)
+class ProjectTokenAdmin(admin.ModelAdmin):
+	readonly_fields = ('id', 'key',)
+	list_display = ('id', 'project', 'name', 'key', 'is_permanent', 'expired_at',)
+	list_display_links = ('id',)
+	list_filter = ('project',)
+	search_fields = ('name', 'project__name', 'id',)
+	list_per_page = 25
+
+	def formfield_for_foreignkey(self, db_field, request, **kwargs):
+		if db_field.name in ('project',):
+			kwargs["queryset"] = db_field.related_model.objects.order_by('name')
+		return super().formfield_for_foreignkey(db_field, request, **kwargs)

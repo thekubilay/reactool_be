@@ -1,3 +1,4 @@
+import string
 import random
 
 from django.db.models import Model
@@ -12,3 +13,9 @@ def generate_unique_id(instance: Model, prefix: int):
 		pk = str(prefix) + str(pk)
 
 	return int(pk)
+
+
+def generate_token_key():
+	key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
+
+	return key
