@@ -10,7 +10,17 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Project
-		fields = "__all__"
+		exclude = ["company", "groups"]
+		depth = 1
+
+
+class ProjectWithGroupSerializer(serializers.ModelSerializer):
+	routes = RouteSerializer(many=True, read_only=True)
+	galleries = GallerySerializer(many=True, read_only=True)
+
+	class Meta:
+		model = Project
+		exclude = ["company"]
 		depth = 1
 
 
