@@ -7,11 +7,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-if config('DEBUG', cast=bool):
+DEBUG = config('DEBUG', cast=bool)
+
+if DEBUG:
 	from .dev import *
 else:
 	from .prod import *
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 	"galleries",
 	"plans",
 	"maps",
+	"panorama",
 ]
 
 REST_FRAMEWORK = {
