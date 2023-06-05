@@ -2,7 +2,7 @@ branch-defaults:
   development:
     environment: development
   main:
-    environment: production
+    environment: development
   production:
     environment: development
     group_suffix: null
