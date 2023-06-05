@@ -8,8 +8,8 @@ urlpatterns = [
 	path('api/', include('projects.urls')),
 	path('api/', include('maps.urls')),
 	path('api/', include('plans.urls')),
+	path('api/', include('panorama.urls')),
 	path('api/', include('galleries.urls')),
-
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
