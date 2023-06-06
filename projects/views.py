@@ -1,7 +1,8 @@
+from django.utils import timezone
+from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.utils import timezone
 from projects.models import Project, ProjectToken, ProjectGroup
 from projects.serializers import ProjectSerializer, ProjectWithGroupSerializer
 
@@ -12,30 +13,24 @@ class ProjectRetrieveView(RetrieveAPIView):
 	permission_classes = [AllowAny]
 
 	def retrieve(self, request, *args, **kwargs):
-		instance: Project = self.get_object()
+		instance = self.get_object()
 		serializer = self.get_serializer(instance)
 
-		is_group = True if request.query_params.get("group", False) == "true" else False
-		key = request.query_params.get("token", None)
+		is_group = request.query_params.get("group", False) == "true"
+		key = request.query_params.get("token")
 
 		if instance.status == "private":
-			token: ProjectToken = instance.tokens.filter(key=key).first()
+			token = instance.tokens.filter(key=key).first()
 
-			if token is None:
-				return Response({"detail": "Project access token is invalid."}, status=403)
+			if not token:
+				return Response({"detail": "Project access token is invalid."}, status=status.HTTP_403_FORBIDDEN)
 
-			if token.is_permanent:
+			if token.is_permanent or (token.expired_at and token.expired_at > timezone.now()):
 				if is_group:
 					serializer = ProjectWithGroupSerializer(instance)
 
 				return Response(serializer.data)
-			else:
-				if token.expired_at is not None and token.expired_at > timezone.now():
-					if is_group:
-						serializer = ProjectWithGroupSerializer(instance)
 
-					return Response(serializer.data)
-				else:
-					return Response({"detail": "Project access token has expired."}, status=403)
+			return Response({"detail": "Project access token has expired."}, status=status.HTTP_403_FORBIDDEN)
 
-		return Response(serializer.data)
+		return Response(serializer.data, status=status.HTTP_200_OK)
