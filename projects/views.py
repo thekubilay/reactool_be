@@ -37,3 +37,5 @@ class ProjectRetrieveView(RetrieveAPIView):
 					return Response(serializer.data)
 				else:
 					return Response({"detail": "Project access token has expired."}, status=403)
+
+		return Response(serializer.data)
