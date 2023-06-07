@@ -1,6 +1,6 @@
 from django.urls import path
-from panorama.views import PanoramaListAPIView
+from maps.views import MapListAPIView
 
 urlpatterns = [
-	path('<int:project_id>/panorama/', PanoramaListAPIView.as_view(), name='panorama_list'),
+	path('<int:project_id>/maps/', MapListAPIView.as_view(), name='maps_list'),
 ]
