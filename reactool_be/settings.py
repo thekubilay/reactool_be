@@ -49,6 +49,8 @@ INSTALLED_APPS = [
 	"plans",
 	"maps",
 	"panorama",
+	"links",
+	"documents",
 ]
 
 REST_FRAMEWORK = {
