@@ -33,7 +33,7 @@ class Plan(models.Model):
 		ordering = ["order_num"]
 
 	def __str__(self):
-		return self.name
+		return self.plan
 
 	def save(self, *args, **kwargs):
 		if not self.id:
