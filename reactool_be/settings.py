@@ -25,6 +25,9 @@ CORS_ORIGIN_WHITELIST = [
 	"https://test.nulunus.com",
 ]
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
+
 INSTALLED_APPS = [
 	'django.contrib.admin',
 	'django.contrib.auth',
