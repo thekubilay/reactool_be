@@ -1,15 +1,6 @@
-import boto3
-import tempfile
-import os
-
-from decouple import config
-
-from django.core.files.base import ContentFile
 from django.db import models
 from projects.models import Project
 from common.utils import generate_unique_id
-from django.utils.html import mark_safe
-from pdf2image import convert_from_path
 
 
 def upload_to(instance, filename):

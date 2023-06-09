@@ -10,7 +10,9 @@ urlpatterns = [
 	path('api/', include('plans.urls')),
 	path('api/', include('panorama.urls')),
 	path('api/', include('galleries.urls')),
-	path('api/', include('links.urls')),
+
+	path('', include('admin.urls')),
+	path('login/', include('users.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
