@@ -4,7 +4,7 @@ from plans.models import Plan
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
-	readonly_fields = ('id',)
+	readonly_fields = ('id', 'thumbnail')
 	list_display = ('id', 'plan', 'type', 'menu', 'madori', 'alcove', 'terrace', 'image')
 	list_display_links = ('id', 'image')
 	list_filter = ('project',)

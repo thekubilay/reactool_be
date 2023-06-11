@@ -3,7 +3,7 @@ from galleries.models import Gallery
 
 
 class GalleryAdmin(admin.ModelAdmin):
-	readonly_fields = ('id',)
+	readonly_fields = ("id", "thumbnail",)
 	list_display = ('id', 'project', 'name', 'file')
 	list_display_links = ('id', 'name', 'project', 'file')
 	list_filter = ('project',)  # Add project_group to list_filter

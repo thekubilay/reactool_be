@@ -12,8 +12,8 @@ urlpatterns = [
 	path('api/', include('galleries.urls')),
 	path('api/', include('links.urls')),
 
-	path('', include('admin.urls')),
-	path('login/', include('users.urls')),
+	# path('', include('admin.urls')),
+	# path('', include('users.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

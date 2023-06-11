@@ -1,10 +1,44 @@
 from django.db import models
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from projects.models import Project
 from common.utils import generate_unique_id
+from PIL import Image
+from io import BytesIO
 
 
 def upload_to(instance, filename):
 	return f"plans/{instance.project.id}/{filename}"
+
+
+def create_thumbnail(image):
+	# Open the image using Pillow
+	img = Image.open(image)
+
+	# Convert RGBA image to RGB
+	if img.mode == 'RGBA':
+		img = img.convert('RGB')
+
+	# Resize the image to a smaller size for the thumbnail
+	thumbnail_size = (300, 300)
+	img.thumbnail(thumbnail_size)
+
+	# Create a BytesIO object to temporarily hold the thumbnail
+	thumb_io = BytesIO()
+
+	# Save the thumbnail image to the BytesIO object
+	img.save(thumb_io, format='JPEG', quality=50)
+
+	# Create a new InMemoryUploadedFile for the thumbnail image
+	thumbnail = InMemoryUploadedFile(
+		thumb_io,
+		None,
+		f"{image.name.split('.')[0]}_thumbnail.jpg",
+		'image/jpeg',
+		thumb_io.tell(),
+		None
+	)
+
+	return thumbnail
 
 
 class Plan(models.Model):
@@ -16,9 +50,9 @@ class Plan(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="plans", null=True)
 	order_num = models.IntegerField(null=True, default=1)
-	plan = models.CharField(max_length=255, blank=True, choices=KIND, default="general_plan",
-													help_text="一般図 間取り図", )
-	image = models.FileField(upload_to=upload_to)
+	plan = models.CharField(max_length=255, blank=True, choices=KIND, default="general_plan", help_text="一般図 間取り図")
+	image = models.ImageField(upload_to=upload_to)
+	thumbnail = models.ImageField(upload_to=upload_to, null=True, blank=True)
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
 	menu = models.CharField(max_length=255, blank=True, null=True, help_text="基本...")
 	madori = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
@@ -41,5 +75,8 @@ class Plan(models.Model):
 
 		self.size = self.image.size
 		self.name = self.image.name
+
+		if self.image:
+			self.thumbnail = create_thumbnail(self.file)
 
 		super().save(*args, **kwargs)

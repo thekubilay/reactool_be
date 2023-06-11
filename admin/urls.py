@@ -2,5 +2,5 @@ from admin.views import index
 from django.urls import path
 
 urlpatterns = [
-	path('', index, name='index'),
+	# path('', index, name='index'),
 ]
