@@ -11,7 +11,7 @@ class GalleryAdmin(admin.ModelAdmin):
 	list_per_page = 25
 
 	def formfield_for_foreignkey(self, db_field, request, **kwargs):
-		if db_field.name in ('project',):  # Check if it's either company or project_group
+		if db_field.name in ('project',):
 			kwargs["queryset"] = db_field.related_model.objects.order_by('name')
 		return super().formfield_for_foreignkey(db_field, request, **kwargs)
 

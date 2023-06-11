@@ -18,10 +18,6 @@ def create_thumbnail(image):
 	if img.mode == 'RGBA':
 		img = img.convert('RGB')
 
-	# Resize the image to a smaller size for the thumbnail
-	thumbnail_size = (300, 300)
-	img.thumbnail(thumbnail_size)
-
 	# Create a BytesIO object to temporarily hold the thumbnail
 	thumb_io = BytesIO()
 
