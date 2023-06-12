@@ -56,6 +56,7 @@ class MapImage(models.Model):
 
 class MapCategory(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
+	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="map_categories", null=True)
 	order_num = models.IntegerField(null=True, default=1)
 	name = models.CharField(max_length=255, blank=True, null=True)
 
