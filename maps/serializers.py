@@ -14,3 +14,9 @@ class MapSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Map
 		fields = '__all__'
+
+
+class MapCategorySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = MapCategory
+		fields = '__all__'
