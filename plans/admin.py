@@ -3,7 +3,7 @@ from plans.models import RoomPlan, GeneralPlan
 
 
 @admin.register(RoomPlan)
-class PlanAdmin(admin.ModelAdmin):
+class RoomPlanAdmin(admin.ModelAdmin):
 	readonly_fields = ('id', 'thumbnail')
 	list_display = ('id', 'type', 'menu', 'madori', 'alcove', 'terrace', 'image')
 	list_display_links = ('id', 'image')
@@ -18,10 +18,10 @@ class PlanAdmin(admin.ModelAdmin):
 
 
 @admin.register(GeneralPlan)
-class PlanAdmin(admin.ModelAdmin):
+class GeneralPlanAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
 	list_display = ('id', 'name', 'image')
-	list_display_links = ('id', 'image')
+	list_display_links = ('id', 'image', "name")
 	list_filter = ('project',)
 	list_per_page = 25
 

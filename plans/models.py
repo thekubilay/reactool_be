@@ -96,9 +96,8 @@ class GeneralPlan(models.Model):
 			self.id = generate_unique_id(self, 510)
 
 		self.size = self.image.size
-		self.name = self.image.name
 
-		if self.image:
-			self.thumbnail = create_thumbnail(self.image)
+		if self.name == "":
+			self.name = self.image.name
 
 		super().save(*args, **kwargs)
