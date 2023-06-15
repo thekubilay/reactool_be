@@ -50,6 +50,7 @@ class RoomPlan(models.Model):
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
 	menu = models.CharField(max_length=255, blank=True, null=True, help_text="基本...")
 	madori = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
+	floor = models.CharField(max_length=255, blank=True, null=True, help_text="1F, 2F")
 	measurement = models.CharField(max_length=255, blank=True, null=True, help_text="62.10m²")
 	alcove = models.CharField(max_length=255, blank=True, null=True, help_text="2.50m²")
 	terrace = models.CharField(max_length=255, blank=True, null=True, help_text="2.50m²")
