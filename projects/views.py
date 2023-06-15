@@ -10,7 +10,7 @@ from projects.serializers import ProjectSerializer, ProjectWithGroupSerializer
 class ProjectRetrieveView(RetrieveAPIView):
 	queryset = Project.objects.all()
 	serializer_class = ProjectSerializer
-	permission_classes = [AllowAny]
+	# permission_classes = [AllowAny]
 
 	def retrieve(self, request, *args, **kwargs):
 		instance = self.get_object()

@@ -41,16 +41,10 @@ def create_thumbnail(image):
 	return thumbnail
 
 
-class Plan(models.Model):
-	KIND = (
-		("general_plan", "一般図"),
-		("room_plan", "間取り図"),
-	)
-
+class RoomPlan(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
-	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="plans", null=True)
+	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="room_plans", null=True)
 	order_num = models.IntegerField(null=True, default=1)
-	plan = models.CharField(max_length=255, blank=True, choices=KIND, default="general_plan", help_text="一般図 間取り図")
 	image = models.ImageField(upload_to=upload_to)
 	thumbnail = models.ImageField(upload_to=upload_to, null=True, blank=True)
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
@@ -67,7 +61,35 @@ class Plan(models.Model):
 		ordering = ["order_num"]
 
 	def __str__(self):
-		return self.plan
+		return self.menu
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.id = generate_unique_id(self, 510)
+
+		self.size = self.image.size
+		self.name = self.image.name
+
+		if self.image:
+			self.thumbnail = create_thumbnail(self.image)
+
+		super().save(*args, **kwargs)
+
+
+class GeneralPlan(models.Model):
+	id = models.BigIntegerField(primary_key=True, blank=True)
+	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="general_plans", null=True)
+	order_num = models.IntegerField(null=True, default=1)
+	image = models.ImageField(upload_to=upload_to)
+	name = models.CharField(max_length=255, blank=True, null=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		ordering = ["order_num"]
+
+	def __str__(self):
+		return self.name
 
 	def save(self, *args, **kwargs):
 		if not self.id:

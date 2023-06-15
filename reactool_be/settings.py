@@ -73,6 +73,8 @@ MIDDLEWARE = [
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'corsheaders.middleware.CorsMiddleware',
+	'reactool_be.middleware.PermissionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'reactool_be.urls'

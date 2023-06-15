@@ -1,8 +1,14 @@
-from plans.models import Plan
+from plans.models import RoomPlan, GeneralPlan
 from rest_framework import serializers
 
 
-class PlanSerializer(serializers.ModelSerializer):
+class RoomPlanSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Plan
+		model = RoomPlan
+		fields = '__all__'
+
+
+class GeneralPlanSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = GeneralPlan
 		fields = '__all__'
