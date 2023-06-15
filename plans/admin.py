@@ -5,10 +5,10 @@ from plans.models import RoomPlan, GeneralPlan
 @admin.register(RoomPlan)
 class RoomPlanAdmin(admin.ModelAdmin):
 	readonly_fields = ('id', 'thumbnail')
-	list_display = ('id', 'type', 'menu', 'madori', 'alcove', 'terrace', 'image')
+	list_display = ('id', 'type', 'menu', 'madori', 'floor', 'alcove', 'terrace', 'image')
 	list_display_links = ('id', 'image')
 	list_filter = ('project',)
-	search_fields = ('project__name', 'id', 'type', 'menu', 'madori')
+	search_fields = ('project__name', 'id', 'type', 'menu', 'madori', 'floor', )
 	list_per_page = 25
 
 	def formfield_for_foreignkey(self, db_field, request, **kwargs):
