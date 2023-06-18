@@ -48,6 +48,7 @@ class RoomPlan(models.Model):
 	image = models.ImageField(upload_to=upload_to)
 	thumbnail = models.ImageField(upload_to=upload_to, null=True, blank=True)
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
+	ppm = models.IntegerField(null=True, default=None)
 	menu = models.CharField(max_length=255, blank=True, null=True, help_text="基本...")
 	madori = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
 	floor = models.CharField(max_length=255, blank=True, null=True, help_text="1F, 2F")

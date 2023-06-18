@@ -5,7 +5,7 @@ from plans.models import RoomPlan, GeneralPlan
 @admin.register(RoomPlan)
 class RoomPlanAdmin(admin.ModelAdmin):
 	readonly_fields = ('id', 'thumbnail')
-	list_display = ('id', 'type', 'menu', 'madori', 'floor', 'alcove', 'terrace', 'image')
+	list_display = ('id', 'type', 'menu', 'madori', 'ppm', 'floor', 'alcove', 'terrace', 'image')
 	list_display_links = ('id', 'image')
 	list_filter = ('project',)
 	search_fields = ('project__name', 'id', 'type', 'menu', 'madori', 'floor', )

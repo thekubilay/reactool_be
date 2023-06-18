@@ -1,4 +1,5 @@
 from decouple import config
+from reactool_be.settings import BASE_DIR
 
 DATABASES = {
 	'default': {
@@ -11,7 +12,6 @@ DATABASES = {
 	}
 }
 
-
 GOOGLE_MAP_API_KEY = config("GOOGLE_MAP_API_KEY")
 
 AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
@@ -21,6 +21,12 @@ AWS_S3_REGION_NAME = 'ap-northeast-3'
 
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_FILE_OVERWRITE = True
+
+# STATIC_URL = '/staticfiles/'
+# STATICFILES_DIRS = [
+# 	BASE_DIR / "staticfiles",
+# ]
+# STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/media/'

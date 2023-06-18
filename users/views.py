@@ -19,12 +19,12 @@ def user_login(request):
 			return redirect('index')
 		else:
 			error_message = 'メールアドレスか、パスワードが間違っています。'
-			return render(request, 'users/login.html', {'error_message': error_message})
-	else:
-		if request.user.is_authenticated:
-			return redirect('index')
+			return render(request, "user_login.html", {'error_message': error_message})
 
-		return render(request, 'users/login.html')
+	if request.user.is_authenticated:
+		return redirect('index')
+
+	return render(request, "user_login.html")
 
 
 def user_logout(request):
