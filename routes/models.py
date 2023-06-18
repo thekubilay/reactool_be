@@ -5,14 +5,12 @@ from common.utils import generate_unique_id
 
 class Route(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
-	order_num = models.IntegerField(null=True, default=1)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="routes")
+	order_num = models.IntegerField(null=True, default=1)
 	route_name = models.CharField(max_length=255, blank=True)
 	component_name = models.CharField(max_length=255, blank=True)
-	url_name = models.CharField(max_length=255, blank=True)
-
-	def endpoint(self):
-		return f"{self.project.id}/{self.url_name}/"
+	endpoint = models.CharField(max_length=255, blank=True)
+	front_url_name = models.CharField(max_length=255, blank=True)
 
 	class Meta:
 		ordering = ["order_num"]
