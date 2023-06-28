@@ -51,6 +51,8 @@ class RoomPlan(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="room_plans", null=True)
 	order_num = models.IntegerField(null=True, default=1)
+	is_list_hidden = models.BooleanField(default=False)
+	is_archive = models.BooleanField(default=False)
 	image = models.ImageField(upload_to=upload_to)
 	thumbnail = models.ImageField(upload_to=upload_to, null=True, blank=True)
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
