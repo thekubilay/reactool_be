@@ -28,7 +28,7 @@ class MapAdminForm(forms.ModelForm):
 @admin.register(Map)
 class MapAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'name', 'address', 'category',)
+	list_display = ('id', 'name', 'address', 'category', 'type', 'icon_name', 'icon_size', 'url', )
 	list_display_links = ('id',)
 	list_filter = ('project',)
 	search_fields = ('project__name', 'name', 'address', 'category')
