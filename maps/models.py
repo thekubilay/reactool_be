@@ -63,6 +63,7 @@ class MapCategory(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="map_categories", null=True)
 	order_num = models.IntegerField(null=True, default=1)
+	icon_color = models.CharField(max_length=255, blank=True, null=True)
 	name = models.CharField(max_length=255, blank=True, null=True)
 
 	class Meta:
