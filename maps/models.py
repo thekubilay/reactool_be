@@ -13,8 +13,6 @@ class Map(models.Model):
 	order_num = models.IntegerField(null=True, default=1)
 	category = models.ForeignKey("MapCategory", on_delete=models.CASCADE, related_name="maps", null=True)
 	name = models.CharField(max_length=255, blank=True, null=True, help_text="AEON MALL")
-	icon_name = models.CharField(max_length=255, blank=True, null=True)
-	icon_size = models.CharField(max_length=255, blank=True, null=True)
 	type = models.CharField(max_length=255, blank=True, null=True)
 	description = models.CharField(max_length=255, blank=True, null=True)
 	url = models.URLField(max_length=255, blank=True, null=True)
@@ -64,6 +62,8 @@ class MapCategory(models.Model):
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="map_categories", null=True)
 	order_num = models.IntegerField(null=True, default=1)
 	icon_color = models.CharField(max_length=255, blank=True, null=True)
+	icon_name = models.CharField(max_length=255, blank=True, null=True)
+	icon_size = models.CharField(max_length=255, blank=True, null=True)
 	name = models.CharField(max_length=255, blank=True, null=True)
 
 	class Meta:

@@ -28,7 +28,7 @@ class MapAdminForm(forms.ModelForm):
 @admin.register(Map)
 class MapAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'name', 'order_num', 'address', 'category', 'type', 'icon_name', 'icon_size', 'url',)
+	list_display = ('id', 'name', 'order_num', 'address', 'category', 'type', 'url',)
 	list_display_links = ('id',)
 	list_filter = ('project',)
 	search_fields = ('project__name', 'name', 'address', 'category')
@@ -45,7 +45,7 @@ class MapAdmin(admin.ModelAdmin):
 			obj.lat = lat
 			obj.lng = lng
 
-		count = (Map.objects.filter(project_id=obj.project).count() + 1) * 10
+		count = Map.objects.filter(project_id=obj.project).count() + 1
 		obj.order_num = count
 
 		obj.save()
@@ -59,7 +59,7 @@ class MapAdmin(admin.ModelAdmin):
 @admin.register(MapCategory)
 class MapCategoryAdmin(admin.ModelAdmin):
 	readonly_fields = ('id',)
-	list_display = ('id', 'name',)
+	list_display = ('id', 'name', 'icon_size', 'icon_color', 'icon_name',)
 	list_display_links = ('id',)
 	search_fields = ('name',)
 	list_per_page = 25
