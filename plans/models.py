@@ -42,12 +42,6 @@ def create_thumbnail(image):
 
 
 class RoomPlan(models.Model):
-	STATUS_CHOICES = (
-		("publish", "公開"),
-		("archive", "アーカイブ"),
-		("list_hidden", "一覧非公開"),
-	)
-
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="room_plans", null=True)
 	order_num = models.IntegerField(null=True, default=1)
@@ -57,7 +51,6 @@ class RoomPlan(models.Model):
 	thumbnail = models.ImageField(upload_to=upload_to, null=True, blank=True)
 	type = models.CharField(max_length=255, blank=True, null=True, help_text="A, B, 立面図")
 	ppm = models.FloatField(blank=True, null=True, help_text="1/100")
-	status = models.CharField(max_length=255, blank=True, default="publish", choices=STATUS_CHOICES, null=True)
 	menu = models.CharField(max_length=255, blank=True, null=True, help_text="基本...")
 	madori = models.CharField(max_length=255, blank=True, null=True, help_text="2LDK, 4LDK+WIC")
 	floor = models.CharField(max_length=255, blank=True, null=True, help_text="1F, 2F")

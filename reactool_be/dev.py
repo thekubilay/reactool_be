@@ -22,6 +22,10 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STORAGES = {
+	'default': {
+		'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+		'BUCKET': 'your-bucket-name',
+	},
 	'staticfiles': {
 		'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
 		'BUCKET': 'development-r-bucket',
