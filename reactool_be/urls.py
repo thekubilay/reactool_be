@@ -12,6 +12,7 @@ urlpatterns = [
 	path('api/', include('panorama.urls')),
 	path('api/', include('galleries.urls')),
 	path('api/', include('links.urls')),
+	path('api/', include('documents.urls')),
 
 	path('', include('users.urls')),
 	path('', views.index, name='index')
