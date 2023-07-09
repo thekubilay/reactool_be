@@ -20,6 +20,7 @@ class MapListAPIView(ListAPIView):
 			return Map.objects.none()
 
 		queryset = Map.objects.filter(project=project)
+		print(queryset)
 
 		if project.status == "archive":
 			return None
@@ -41,7 +42,7 @@ class MapListAPIView(ListAPIView):
 		queryset = self.get_queryset()
 		serializer = self.get_serializer(queryset, many=True)
 
-		if queryset is None:
+		if queryset is None or not queryset.exists():
 			return Response({"message": "No maps found."}, status=status.HTTP_404_NOT_FOUND)
 
 		if queryset.exists():
