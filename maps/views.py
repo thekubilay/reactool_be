@@ -20,7 +20,6 @@ class MapListAPIView(ListAPIView):
 			return Map.objects.none()
 
 		queryset = Map.objects.filter(project=project)
-		print(queryset)
 
 		if project.status == "archive":
 			return None
