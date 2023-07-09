@@ -42,10 +42,7 @@ class MapListAPIView(ListAPIView):
 		queryset = self.get_queryset()
 		serializer = self.get_serializer(queryset, many=True)
 
-		if queryset is None or not queryset.exists():
-			return Response({"message": "No maps found."}, status=status.HTTP_404_NOT_FOUND)
-
-		if queryset.exists():
+		if queryset is not None:
 			return Response(serializer.data, status=status.HTTP_200_OK)
 
 		return Response({"message": "Access token is invalid."}, status=status.HTTP_403_FORBIDDEN)
