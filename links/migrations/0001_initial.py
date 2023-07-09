@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import galleries.models
+import links.models
 
 
 class Migration(migrations.Migration):
@@ -15,20 +15,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Gallery',
+            name='Link',
             fields=[
                 ('id', models.BigIntegerField(blank=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(blank=True, max_length=255, null=True)),
+                ('url', models.CharField(blank=True, max_length=255, null=True)),
+                ('image', models.ImageField(blank=True, null=True, upload_to=links.models.upload_to)),
                 ('order_num', models.IntegerField(default=1, null=True)),
-                ('file', models.FileField(upload_to=galleries.models.upload_to)),
-                ('thumbnail', models.ImageField(blank=True, null=True, upload_to=galleries.models.upload_to)),
-                ('name', models.CharField(blank=True, max_length=255)),
-                ('size', models.IntegerField(default=0, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='galleries', to='projects.project')),
+                ('project', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='links', to='projects.project')),
             ],
             options={
-                'verbose_name_plural': 'Galleries',
                 'ordering': ['order_num'],
             },
         ),
