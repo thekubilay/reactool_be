@@ -11,6 +11,7 @@ class Document(models.Model):
 	id = models.BigIntegerField(primary_key=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="documents", null=True)
 	order_num = models.IntegerField(null=True, default=1)
+	folder_name = models.CharField(max_length=255, blank=True, null=True)
 	name = models.CharField(max_length=255, blank=True, null=True)
 	thumbnail = models.ImageField(upload_to=upload_to, blank=True)
 	file = models.FileField(upload_to='documents/%Y/%m/%d')

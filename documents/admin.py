@@ -4,7 +4,7 @@ from django.utils.html import format_html
 
 
 class DocumentAdmin(admin.ModelAdmin):
-	list_display = ('id', 'name', 'file', 'thumbnail_tag',)
+	list_display = ('id', 'name', 'file', 'folder_name' 'thumbnail_tag',)
 	readonly_fields = ('id',)
 	list_display_links = ('id',)
 
