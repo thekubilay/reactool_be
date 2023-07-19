@@ -4,7 +4,9 @@ from django.utils.html import format_html
 
 
 class DocumentAdmin(admin.ModelAdmin):
-	list_display = ('thumbnail_tag', 'file')
+	list_display = ('id', 'name', 'file', 'thumbnail_tag',)
+	readonly_fields = ('id',)
+	list_display_links = ('id',)
 
 	def thumbnail_tag(self, obj):
 		if obj.thumbnail:

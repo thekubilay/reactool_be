@@ -31,3 +31,5 @@ class Document(models.Model):
 		self.name = self.file.name
 		self.size = self.file.size
 		self.type = self.file.file.content_type
+
+		super().save(*args, **kwargs)
